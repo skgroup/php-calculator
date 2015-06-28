@@ -1,0 +1,27 @@
+{
+  "name": "sk/php-formuls",
+  "type": "library",
+  "description": "Parsing and evaluating mathematical formula entered as a string",
+  "keywords": ["rbac", "access control", "php-rbac", "skgroup"],
+  "minimum-stability": "stable",
+  "license": "LGPL",
+
+
+  "authors": [
+    {
+      "name": "Stanislav Kiryukhin",
+      "email": "korsar.zn@gmail.com",
+      "role": "Founder and project lead"
+    }
+  ],
+
+  "require": {
+    "php": ">=5.4.0"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "SK\\Formuls\\": "src/"
+    }
+  }
+}
