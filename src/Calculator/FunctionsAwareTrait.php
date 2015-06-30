@@ -11,11 +11,11 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Calculator;
+namespace SKGroup\MathExpression\Calculator;
 
 /**
  * Class VariablesAwareTrait
- * @package SK\Formuls\Calculator
+ * @package SKGroup\MathExpression\Calculator
  */
 trait FunctionsAwareTrait
 {

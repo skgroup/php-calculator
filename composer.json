@@ -1,10 +1,10 @@
 {
-  "name": "sk/php-formuls",
+  "name": "skgroup/php-calculator",
   "type": "library",
   "description": "Parsing and evaluating mathematical formula entered as a string",
-  "keywords": ["rbac", "access control", "php-rbac", "skgroup"],
+  "keywords": ["calculator", "php-calculator", "math", "expression"],
   "minimum-stability": "stable",
-  "license": "LGPL",
+  "license": "MIT",
 
 
   "authors": [
@@ -21,7 +21,7 @@
 
   "autoload": {
     "psr-4": {
-      "SK\\Formuls\\": "src/"
+      "SKGroup\\MathExpression\\": "src/"
     }
   }
 }

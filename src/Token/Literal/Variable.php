@@ -11,18 +11,18 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Token\Literal;
+namespace SKGroup\MathExpression\Token\Literal;
 
 
-use SK\Formuls\Calculator\CalculatorAwareInterface;
-use SK\Formuls\Calculator\CalculatorAwareTrait;
-use SK\Formuls\Calculator\VariablesAwareInterface as CalculatorVariablesAwareInterface;
-use SK\Formuls\Token;
-use SK\Formuls\Token\LiteralInterface;
+use SKGroup\MathExpression\Calculator\CalculatorAwareInterface;
+use SKGroup\MathExpression\Calculator\CalculatorAwareTrait;
+use SKGroup\MathExpression\Calculator\VariablesAwareInterface as CalculatorVariablesAwareInterface;
+use SKGroup\MathExpression\Token;
+use SKGroup\MathExpression\Token\LiteralInterface;
 
 /**
  * Class Variable
- * @package SK\Formuls\Token\Literal
+ * @package SKGroup\MathExpression\Token\Literal
  */
 class Variable extends Token implements LiteralInterface, CalculatorAwareInterface
 {

@@ -11,11 +11,11 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Calculator;
+namespace SKGroup\MathExpression\Calculator;
 
 /**
  * Interface FunctionsAwareInterface
- * @package SK\Formuls\Calculator
+ * @package SKGroup\MathExpression\Calculator
  */
 interface FunctionsAwareInterface
 {

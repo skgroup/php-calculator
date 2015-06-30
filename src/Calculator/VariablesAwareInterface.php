@@ -12,11 +12,11 @@
  * ----------------------------------------------
  */
 
-namespace SK\Formuls\Calculator;
+namespace SKGroup\MathExpression\Calculator;
 
 /**
  * Interface VariablesAwareInterface
- * @package SK\Formuls\Calculator
+ * @package SKGroup\MathExpression\Calculator
  */
 interface VariablesAwareInterface
 {

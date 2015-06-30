@@ -11,14 +11,14 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Tokenizer;
+namespace SKGroup\MathExpression\Tokenizer;
 
 
-use SK\Formuls\Token\TokenInterface;
+use SKGroup\MathExpression\Token\TokenInterface;
 
 /**
  * Interface TokenizerInterface
- * @package SK\Formuls\Tokenizer
+ * @package SKGroup\MathExpression\Tokenizer
  */
 interface TokenizerInterface
 {

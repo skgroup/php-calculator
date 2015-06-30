@@ -11,26 +11,26 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls;
+namespace SKGroup\MathExpression;
 
 
-use SK\Formuls\Calculator\CalculatorAwareInterface;
-use SK\Formuls\Calculator\CalculatorInterface;
-use SK\Formuls\Calculator\FunctionsAwareInterface;
-use SK\Formuls\Calculator\FunctionsAwareTrait;
-use SK\Formuls\Calculator\VariablesAwareInterface;
-use SK\Formuls\Calculator\VariablesAwareTrait;
-use SK\Formuls\Token\LiteralInterface;
-use SK\Formuls\Tokenizer\TokenizerAwareTrait;
-use SK\Formuls\Token\Literal;
-use SK\Formuls\Token\Operator;
-use SK\Formuls\Token\OperatorInterface;
-use SK\Formuls\Token\TokenInterface;
+use SKGroup\MathExpression\Calculator\CalculatorAwareInterface;
+use SKGroup\MathExpression\Calculator\CalculatorInterface;
+use SKGroup\MathExpression\Calculator\FunctionsAwareInterface;
+use SKGroup\MathExpression\Calculator\FunctionsAwareTrait;
+use SKGroup\MathExpression\Calculator\VariablesAwareInterface;
+use SKGroup\MathExpression\Calculator\VariablesAwareTrait;
+use SKGroup\MathExpression\Token\LiteralInterface;
+use SKGroup\MathExpression\Tokenizer\TokenizerAwareTrait;
+use SKGroup\MathExpression\Token\Literal;
+use SKGroup\MathExpression\Token\Operator;
+use SKGroup\MathExpression\Token\OperatorInterface;
+use SKGroup\MathExpression\Token\TokenInterface;
 
 
 /**
  * Class Calculator
- * @package SK\Formuls
+ * @package SKGroup\MathExpression
  */
 class Calculator implements CalculatorInterface, FunctionsAwareInterface, VariablesAwareInterface
 {

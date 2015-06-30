@@ -11,16 +11,16 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Token\Operator;
+namespace SKGroup\MathExpression\Token\Operator;
 
 
-use SK\Formuls\Token;
-use SK\Formuls\Token\Operator;
+use SKGroup\MathExpression\Token;
+use SKGroup\MathExpression\Token\Operator;
 
 
 /**
  * Class Exponentiation
- * @package SK\Formuls\Token\Operator
+ * @package SKGroup\MathExpression\Token\Operator
  */
 class Exponentiation extends Token implements Token\OperatorInterface
 {

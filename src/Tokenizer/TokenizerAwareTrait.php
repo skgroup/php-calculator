@@ -11,12 +11,12 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Tokenizer;
+namespace SKGroup\MathExpression\Tokenizer;
 
 
 /**
  * Class TokenizerAwareTrait
- * @package SK\Formuls\Tokenizer
+ * @package SKGroup\MathExpression\Tokenizer
  */
 trait TokenizerAwareTrait
 {

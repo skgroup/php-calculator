@@ -11,11 +11,11 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Token;
+namespace SKGroup\MathExpression\Token;
 
 /**
  * Interface LiteralInterface
- * @package SK\Formuls\Token
+ * @package SKGroup\MathExpression\Token
  */
 interface LiteralInterface extends TokenInterface
 {

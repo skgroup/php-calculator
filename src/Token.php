@@ -11,13 +11,13 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls;
+namespace SKGroup\MathExpression;
 
-use SK\Formuls\Token\TokenInterface;
+use SKGroup\MathExpression\Token\TokenInterface;
 
 /**
  * Class Token
- * @package SK\Formuls
+ * @package SKGroup\MathExpression
  */
 abstract class Token implements TokenInterface
 {

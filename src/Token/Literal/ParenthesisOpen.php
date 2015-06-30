@@ -11,16 +11,16 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Token\Literal;
+namespace SKGroup\MathExpression\Token\Literal;
 
 
-use SK\Formuls\Token;
-use SK\Formuls\Token\LiteralInterface;
+use SKGroup\MathExpression\Token;
+use SKGroup\MathExpression\Token\LiteralInterface;
 
 
 /**
  * Class ParenthesisOpen
- * @package SK\Formuls\Token\Literal
+ * @package SKGroup\MathExpression\Token\Literal
  */
 class ParenthesisOpen extends Token implements LiteralInterface
 {

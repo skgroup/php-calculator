@@ -11,21 +11,21 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls;
+namespace SKGroup\MathExpression;
 
 
-use SK\Formuls\Tokenizer\TokenizerInterface;
+use SKGroup\MathExpression\Tokenizer\TokenizerInterface;
 
-use SK\Formuls\Token\TokenInterface;
-use SK\Formuls\Token\LiteralInterface;
-use SK\Formuls\Token\OperatorInterface;
+use SKGroup\MathExpression\Token\TokenInterface;
+use SKGroup\MathExpression\Token\LiteralInterface;
+use SKGroup\MathExpression\Token\OperatorInterface;
 
-use SK\Formuls\Token\Literal;
-use SK\Formuls\Token\Operator;
+use SKGroup\MathExpression\Token\Literal;
+use SKGroup\MathExpression\Token\Operator;
 
 /**
  * Class Tokenizer
- * @package SK\Formuls
+ * @package SKGroup\MathExpression
  */
 class Tokenizer implements TokenizerInterface
 {

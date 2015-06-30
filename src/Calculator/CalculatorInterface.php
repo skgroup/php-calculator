@@ -11,13 +11,13 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls\Calculator;
+namespace SKGroup\MathExpression\Calculator;
 
-use SK\Formuls\Tokenizer\TokenizerAwareInterface;
+use SKGroup\MathExpression\Tokenizer\TokenizerAwareInterface;
 
 /**
  * Interface CalculatorInterface
- * @package SK\Formuls\Calculator
+ * @package SKGroup\MathExpression\Calculator
  */
 interface CalculatorInterface extends TokenizerAwareInterface
 {
