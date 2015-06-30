@@ -42,4 +42,9 @@ interface FunctionsAwareInterface
 	 * @return bool
 	 */
 	public function hasFunction($name);
+
+	/**
+	 * @return self
+	 */
+	public function clearFunctions();
 }

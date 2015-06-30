@@ -1,6 +1,6 @@
 <?php
 /**
- * CalculatorInterfaceCalculator.php
+ * CalculatorInterface.php
  * ----------------------------------------------
  *
  *
@@ -13,12 +13,32 @@
  */
 namespace SK\Formuls\Calculator;
 
+use SK\Formuls\Tokenizer\TokenizerAwareInterface;
 
 /**
- * Interface CalculatorInterfaceCalculator
- * @package SK\Formuls
+ * Interface CalculatorInterface
+ * @package SK\Formuls\Calculator
  */
-interface CalculatorInterface extends CalculatorBaseInterface, FunctionsAwareInterface, VariablesAwareInterface
+interface CalculatorInterface extends TokenizerAwareInterface
 {
+	/**
+	 * @return int|float
+	 */
+	public function calculate();
 
+	/**
+	 * @param string $expression
+	 * @return self
+	 */
+	public function setExpression($expression);
+
+	/**
+	 * @return string
+	 */
+	public function getExpression();
+
+	/**
+	 * @return void
+	 */
+	public function clear();
 }

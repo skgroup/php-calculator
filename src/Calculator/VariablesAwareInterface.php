@@ -50,4 +50,9 @@ interface VariablesAwareInterface
 	 * @return bool
 	 */
 	public function hasVariable($name);
+
+	/**
+	 * @return self
+	 */
+	public function clearVariables();
 }

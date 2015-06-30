@@ -20,22 +20,22 @@ namespace SK\Formuls\Calculator;
 trait CalculatorAwareTrait
 {
 	/**
-	 * @var CalculatorBaseInterface
+	 * @var CalculatorInterface
 	 */
 	private $calculator;
 
 	/**
-	 * @param CalculatorBaseInterface $calculator
+	 * @param CalculatorInterface $calculator
 	 * @return self
 	 */
-	public function setCalculator(CalculatorBaseInterface $calculator)
+	public function setCalculator(CalculatorInterface $calculator)
 	{
 		$this->calculator = $calculator;
 		return $this;
 	}
 
 	/**
-	 * @return CalculatorBaseInterface
+	 * @return CalculatorInterface
 	 */
 	public function getCalculator()
 	{

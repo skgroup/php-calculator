@@ -11,11 +11,11 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls;
+namespace SK\Formuls\Tokenizer;
 
 /**
  * Interface TokenizerAwareInterface
- * @package SK\Formuls
+ * @package SK\Formuls\Tokenizer
  */
 interface TokenizerAwareInterface
 {

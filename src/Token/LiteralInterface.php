@@ -17,10 +17,7 @@ namespace SK\Formuls\Token;
  * Interface LiteralInterface
  * @package SK\Formuls\Token
  */
-interface LiteralInterface
+interface LiteralInterface extends TokenInterface
 {
-	/**
-	 * @return string
-	 */
-	public function getValue();
+
 }

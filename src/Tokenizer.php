@@ -13,7 +13,10 @@
  */
 namespace SK\Formuls;
 
-use SK\Formuls\Calculator\CalculatorBaseInterface;
+
+use SK\Formuls\Tokenizer\TokenizerInterface;
+
+use SK\Formuls\Token\TokenInterface;
 use SK\Formuls\Token\LiteralInterface;
 use SK\Formuls\Token\OperatorInterface;
 
@@ -42,10 +45,7 @@ class Tokenizer implements TokenizerInterface
 
 	protected $expression;
 
-	/**
-	 * @var CalculatorBaseInterface
-	 */
-	protected $calculator;
+
 
 	protected $cursor = 0;
 	protected $cursorToken = 0;
@@ -55,17 +55,9 @@ class Tokenizer implements TokenizerInterface
 
 	protected $tokenPrev = false;
 
-	/**
-	 * @param CalculatorBaseInterface $calculator
-	 */
-	public function __construct(CalculatorBaseInterface $calculator)
-	{
-		$this->calculator = $calculator;
-	}
-
 
 	/**
-	 * @return array
+	 * @return TokenInterface[]|LiteralInterface[]|OperatorInterface[]
 	 */
 	public function getTokens()
 	{
@@ -79,7 +71,7 @@ class Tokenizer implements TokenizerInterface
 	}
 
 	/**
-	 * @return bool|LiteralInterface|OperatorInterface
+	 * @return bool|LiteralInterface|OperatorInterface|TokenInterface
 	 */
 	public function getToken()
 	{

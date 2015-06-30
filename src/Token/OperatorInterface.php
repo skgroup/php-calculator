@@ -66,9 +66,4 @@ interface OperatorInterface extends TokenInterface
 	 * @return mixed
 	 */
 	public function execute($a, $b = null);
-
-	/**
-	 * @return string
-	 */
-	public function __toString();
 }

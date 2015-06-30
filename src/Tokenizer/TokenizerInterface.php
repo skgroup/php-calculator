@@ -11,26 +11,26 @@
  * All Rights Reserved.
  * ----------------------------------------------
  */
-namespace SK\Formuls;
+namespace SK\Formuls\Tokenizer;
 
 
-use SK\Formuls\Calculator\CalculatorBaseInterface;
+use SK\Formuls\Token\TokenInterface;
 
 /**
  * Interface TokenizerInterface
- * @package SK\Formuls
+ * @package SK\Formuls\Tokenizer
  */
 interface TokenizerInterface
 {
 	/**
-	 * @param CalculatorBaseInterface $calculator
-	 */
-	public function __construct(CalculatorBaseInterface $calculator);
-
-	/**
-	 * @return string|false
+	 * @return TokenInterface|false
 	 */
 	public function getToken();
+
+	/**
+	 * @return TokenInterface[]
+	 */
+	public function getTokens();
 
 	/**
 	 * @param string $expression

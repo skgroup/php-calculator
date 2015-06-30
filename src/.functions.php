@@ -1,6 +1,6 @@
 <?php
 /**
- * mathFunction.php
+ * .functions.php
  * ----------------------------------------------
  *
  *
@@ -20,5 +20,5 @@ return [
 	'sqrt'  => function($a) { return sqrt($a); },
 
 	'min'  => function($a) { return min(func_get_args()); },
-	'max'  => function($a) { return max(func_get_args()); },
+	'max'  => function($a) { return max(func_get_args()); }
 ];

@@ -20,13 +20,13 @@ namespace SK\Formuls\Calculator;
 interface CalculatorAwareInterface
 {
 	/**
-	 * @param CalculatorBaseInterface $calculator
+	 * @param CalculatorInterface $calculator
 	 * @return self
 	 */
-	public function setCalculator(CalculatorBaseInterface $calculator);
+	public function setCalculator(CalculatorInterface $calculator);
 
 	/**
-	 * @return CalculatorBaseInterface
+	 * @return CalculatorInterface
 	 */
 	public function getCalculator();
 }

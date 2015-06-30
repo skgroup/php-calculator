@@ -15,6 +15,11 @@ namespace SK\Formuls;
 
 
 use SK\Formuls\Calculator\CalculatorInterface;
+use SK\Formuls\Calculator\FunctionsAwareInterface;
+use SK\Formuls\Calculator\FunctionsAwareTrait;
+use SK\Formuls\Calculator\VariablesAwareInterface;
+use SK\Formuls\Calculator\VariablesAwareTrait;
+use SK\Formuls\Tokenizer\TokenizerAwareTrait;
 use SK\Formuls\Token\Literal;
 use SK\Formuls\Token\Operator;
 use SK\Formuls\Token\OperatorInterface;
@@ -25,22 +30,11 @@ use SK\Formuls\Token\TokenInterface;
  * Class Calculator
  * @package SK\Formuls
  */
-class Calculator implements CalculatorInterface
+class Calculator implements CalculatorInterface, FunctionsAwareInterface, VariablesAwareInterface
 {
-	/**
-	 * @var TokenizerInterface
-	 */
-	protected $tokenizer;
-
-	/**
-	 * @var array
-	 */
-	protected $variables = [];
-
-	/**
-	 * @var array
-	 */
-	protected $functions = [];
+	use VariablesAwareTrait;
+	use FunctionsAwareTrait;
+	use TokenizerAwareTrait;
 
 	/**
 	 * @var string
@@ -64,6 +58,10 @@ class Calculator implements CalculatorInterface
 	 */
 	public function calculate()
 	{
+		if (!$this->getTokenizer()) {
+			$this->setTokenizer($this->createTokenizer());
+		}
+
 		return $this->calculateReversePolishNotation();
 	}
 
@@ -86,125 +84,12 @@ class Calculator implements CalculatorInterface
 	}
 
 	/**
-	 * @param array $variables
-	 * @param bool $merge
-	 * @return $this
-	 */
-	public function setVariables(Array $variables, $merge = true)
-	{
-		$this->variables = $merge ? array_merge($this->variables, $variables) : $variables;
-		return $this;
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getVariables()
-	{
-		return $this->variables;
-	}
-
-	/**
-	 * @param string $name
-	 * @param float|int $value
-	 * @return $this
-	 */
-	public function setVariable($name, $value)
-	{
-		$this->variables[$name] = $value;
-		return $this;
-	}
-
-	/**
-	 * @param string $name
-	 * @return float|int|false
-	 */
-	public function getVariable($name)
-	{
-		if ($this->hasVariable($name)) {
-			return $this->variables[$name];
-		} else {
-			return $this->getConstant($name);
-		}
-	}
-
-	/**
-	 * @param $name
-	 * @return bool
-	 */
-	public function hasVariable($name)
-	{
-		return isset($this->variables[$name]) || $this->hasConstant($name);
-	}
-
-
-
-	/**
 	 * @return void
 	 */
 	public function clear()
 	{
 		$this->expression = null;
-		$this->variables  = [];
-	}
-
-	/**
-	 * @return TokenizerInterface
-	 */
-	public function getTokenizer()
-	{
-		if (!$this->tokenizer) {
-			$this->tokenizer = $this->createTokenizer();
-		}
-
-		return $this->tokenizer;
-	}
-
-	/**
-	 * @param TokenizerInterface $tokenizer
-	 * @return self
-	 */
-	public function setTokenizer(TokenizerInterface $tokenizer)
-	{
-		$this->tokenizer = $tokenizer;
-		return $this;
-	}
-
-	/**
-	 * @param $name
-	 * @param callable $callback
-	 * @return self
-	 */
-	public function registerFunction($name, callable $callback)
-	{
-		$this->functions[$name] = $callback;
-		return $this;
-	}
-
-	/**
-	 * @param $name
-	 * @return callable
-	 */
-	public function getFunction($name)
-	{
-		return $this->functions[$name];
-	}
-
-	/**
-	 * @return callable[]
-	 */
-	public function getFunctions()
-	{
-		return $this->functions;
-	}
-
-	/**
-	 * @param $name
-	 * @return bool
-	 */
-	public function hasFunction($name)
-	{
-		return isset($this->functions[$name]) && is_callable($this->functions[$name]);
+		$this->clearVariables();
 	}
 
 	/**
@@ -345,14 +230,7 @@ class Calculator implements CalculatorInterface
 		return static::$_cacheRPN[$cacheKey] = $results;
 	}
 
-	/**
-	 * @return Tokenizer
-	 */
-	protected function createTokenizer()
-	{
-		return new Tokenizer($this);
 
-	}
 	/**
 	 * Register Basic math constants
 	 * @return void
@@ -373,7 +251,7 @@ class Calculator implements CalculatorInterface
 	 */
 	protected function registerBasicFunctions()
 	{
-		$functions = (array) include __DIR__ . '/mathFunction.php';
+		$functions = (array)include __DIR__ . '/.functions.php';
 
 		foreach ($functions as $name => $function) {
 			$this->registerFunction($name, $function);
@@ -387,5 +265,13 @@ class Calculator implements CalculatorInterface
 	protected function isNumber($token)
 	{
 		return $token instanceof Literal\Number || $token instanceof Literal\Variable;
+	}
+
+	/**
+	 * @return Tokenizer
+	 */
+	private function createTokenizer()
+	{
+		return new Tokenizer($this);
 	}
 }
