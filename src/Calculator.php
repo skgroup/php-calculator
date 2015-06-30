@@ -14,6 +14,7 @@
 namespace SK\Formuls;
 
 
+use SK\Formuls\Calculator\CalculatorAwareInterface;
 use SK\Formuls\Calculator\CalculatorInterface;
 use SK\Formuls\Calculator\FunctionsAwareInterface;
 use SK\Formuls\Calculator\FunctionsAwareTrait;
@@ -101,26 +102,26 @@ class Calculator implements CalculatorInterface, FunctionsAwareInterface, Variab
 		$stack = [];
 
 		foreach ($rpn as $token) {
+
+			if ($token instanceof CalculatorAwareInterface) {
+				$token->setCalculator($this);
+			}
+
 			if ($this->isNumber($token)) {
 				$stack[] = $token->getValue();
-			} else {
-
-				if ($token->getType() === OperatorInterface::TYPE_BINARY) {
-					$b = array_pop($stack);
-					$a = array_pop($stack);
-					$stack[] = $token->execute($a, $b);
-				} else if ($token->getType() === OperatorInterface::TYPE_UNARY) {
-					$stack[] = $token->execute(array_pop($stack));
-					continue;
-				} else if ($token instanceof Operator\FunctionCall) {
-					$token->setCalculator($this);
-					$stack[] = call_user_func_array([$token, 'execute'], array_splice($stack, -$token->getArgumentsNum()));
-				}
+				continue;
 			}
+
+			if ($token instanceof Operator\FunctionCall) {
+				$operandsNum = $token->getArgumentsNum();
+			} else {
+				$operandsNum = $token->getType() === OperatorInterface::TYPE_BINARY ? 2 : 1;
+			}
+
+			$stack[] = call_user_func_array([$token, 'execute'], array_splice($stack, -$operandsNum));
 		}
 
-
-		if (count($stack) > 10) {
+		if (count($stack) > 1) {
 			throw new \LogicException(sprintf('Unknown Error: Unable to evaluate the expression'));
 		}
 
@@ -200,7 +201,7 @@ class Calculator implements CalculatorInterface, FunctionsAwareInterface, Variab
 				}
 
 				if (!$hasParenthesisOpen) {
-					//TODO: Бросить исключение..
+					throw new \RuntimeException('Error: Mismatched parentheses');
 				}
 
 
