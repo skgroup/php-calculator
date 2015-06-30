@@ -33,24 +33,18 @@ class Tokenizer implements TokenizerInterface
 	const CHAR_SPACE 				= ' ';
 	const CHAR_PARENTHESIS_OPEN 	= '(';
 	const CHAR_PARENTHESIS_CLOSE 	= ')';
-	const CHAR_PLUS 				= '+';
-	const CHAR_MINUS 				= '-';
-	const CHAR_MULTIPLY 			= '*';
-	const CHAR_DIVIDE 				= '/';
-	const CHAR_MODUlE				= '%';
-	const CHAR_EXPONENT				= '^';
+	const CHAR_ADDITION 			= '+';
+	const CHAR_SUBTRACTION 			= '-';
+	const CHAR_MULTIPLICATION 		= '*';
+	const CHAR_DIVISION 			= '/';
+	const CHAR_MODULUS				= '%';
+	const CHAR_EXPONENTIATION		= '^';
 	const CHAR_SEPARATE				= ',';
 	const CHAR_LITERAL				= '[a-zA-Z0-9_]';
 
-
 	protected $expression;
 
-
-
 	protected $cursor = 0;
-	protected $cursorToken = 0;
-
-
 	protected $length = 0;
 
 	protected $tokenPrev = false;
@@ -139,28 +133,28 @@ class Tokenizer implements TokenizerInterface
 	{
 		switch ($token) {
 
-			case static::CHAR_PLUS:
-				$token = $this->isUnaryOperation($token) ? new Operator\PlusUnary($token) : new Operator\Plus($token);
+			case static::CHAR_ADDITION:
+				$token = new Operator\Addition($token);
 			break;
 
-			case static::CHAR_MINUS:
-				$token = $this->isUnaryOperation($token) ? new Operator\MinusUnary($token) : new Operator\Minus($token);
+			case static::CHAR_SUBTRACTION:
+				$token = $this->isUnaryOperation($token) ? new Operator\Negation($token) : new Operator\Subtraction($token);
 			break;
 
-			case static::CHAR_MULTIPLY:
-				$token = new Operator\Multiply($token);
+			case static::CHAR_MULTIPLICATION:
+				$token = new Operator\Multiplication($token);
 			break;
 
-			case static::CHAR_DIVIDE:
-				$token = new Operator\Divide($token);
+			case static::CHAR_DIVISION:
+				$token = new Operator\Division($token);
 			break;
 
-			case static::CHAR_MODUlE:
-				$token = new Operator\Mod($token);
+			case static::CHAR_MODULUS:
+				$token = new Operator\Modulus($token);
 			break;
 
-			case static::CHAR_EXPONENT:
-				$token = new Operator\Exponent($token);
+			case static::CHAR_EXPONENTIATION:
+				$token = new Operator\Exponentiation($token);
 			break;
 
 			case static::CHAR_PARENTHESIS_OPEN:
@@ -192,7 +186,7 @@ class Tokenizer implements TokenizerInterface
 					break;
 				}
 
-				throw new \LogicException(sprintf('Syntax error: Expression "%s" not supported', $token));
+				throw new \LogicException('Syntax error: Operator "' . $token . '" not supported');
 		}
 
 

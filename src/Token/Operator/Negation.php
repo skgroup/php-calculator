@@ -1,6 +1,6 @@
 <?php
 /**
- * Exponent.php
+ * Negation.php
  * ----------------------------------------------
  *
  *
@@ -15,23 +15,23 @@ namespace SK\Formuls\Token\Operator;
 
 
 use SK\Formuls\Token;
-use SK\Formuls\Token\Operator;
+use SK\Formuls\Token\OperatorInterface;
 
 
 /**
- * Class Exponent
+ * Class Subtraction
  * @package SK\Formuls\Token\Operator
  */
-class Exponent extends Token implements Token\OperatorInterface
+class Negation extends Token implements OperatorInterface
 {
 	/**
 	 * @param mixed $a
 	 * @param mixed $b
-	 * @return mixed
+	 * @return mixed|void
 	 */
 	public function execute($a, $b = null)
 	{
-		return version_compare(PHP_VERSION, '5.6.0') >= 0 ? $a ** $b : pow($a, $b);
+		return -$a;
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Exponent extends Token implements Token\OperatorInterface
 	 */
 	public function getType()
 	{
-		return static::TYPE_BINARY;
+		return static::TYPE_UNARY;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class Exponent extends Token implements Token\OperatorInterface
 	 */
 	public function getPriority()
 	{
-		return 4;
+		return 5;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plus.php
+ * Modulus.php
  * ----------------------------------------------
  *
  *
@@ -19,10 +19,10 @@ use SK\Formuls\Token\OperatorInterface;
 
 
 /**
- * Class Minus
+ * Class Modulus
  * @package SK\Formuls\Token\Operator
  */
-class Minus extends Token implements OperatorInterface
+class Modulus extends Token implements OperatorInterface
 {
 	/**
 	 * @param mixed $a
@@ -31,7 +31,7 @@ class Minus extends Token implements OperatorInterface
 	 */
 	public function execute($a, $b = null)
 	{
-		return $a - $b;
+		return $a % $b;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class Minus extends Token implements OperatorInterface
 	 */
 	public function getPriority()
 	{
-		return 2;
+		return 3;
 	}
 
 	/**

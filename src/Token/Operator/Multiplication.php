@@ -1,6 +1,6 @@
 <?php
 /**
- * Plus.php
+ * Multiplication.php
  * ----------------------------------------------
  *
  *
@@ -19,10 +19,10 @@ use SK\Formuls\Token\OperatorInterface;
 
 
 /**
- * Class Minus
+ * Class Multiplication
  * @package SK\Formuls\Token\Operator
  */
-class PlusUnary extends Token implements OperatorInterface
+class Multiplication extends Token implements OperatorInterface
 {
 	/**
 	 * @param mixed $a
@@ -31,7 +31,7 @@ class PlusUnary extends Token implements OperatorInterface
 	 */
 	public function execute($a, $b = null)
 	{
-		return +$a;
+		return $a * $b;
 	}
 
 	/**
@@ -39,7 +39,7 @@ class PlusUnary extends Token implements OperatorInterface
 	 */
 	public function getType()
 	{
-		return static::TYPE_UNARY;
+		return static::TYPE_BINARY;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class PlusUnary extends Token implements OperatorInterface
 	 */
 	public function getPriority()
 	{
-		return 5;
+		return 3;
 	}
 
 	/**
@@ -55,6 +55,6 @@ class PlusUnary extends Token implements OperatorInterface
 	 */
 	public function getAssociation()
 	{
-		return static::ASSOC_RIGHT;
+		return static::ASSOC_LEFT;
 	}
 }

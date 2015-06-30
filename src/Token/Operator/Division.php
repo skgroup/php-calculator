@@ -1,6 +1,6 @@
 <?php
 /**
- * Plus.php
+ * Division.php
  * ----------------------------------------------
  *
  *
@@ -17,12 +17,11 @@ namespace SK\Formuls\Token\Operator;
 use SK\Formuls\Token;
 use SK\Formuls\Token\OperatorInterface;
 
-
 /**
- * Class Mod
+ * Class Division
  * @package SK\Formuls\Token\Operator
  */
-class Mod extends Token implements OperatorInterface
+class Division extends Token implements OperatorInterface
 {
 	/**
 	 * @param mixed $a
@@ -31,7 +30,11 @@ class Mod extends Token implements OperatorInterface
 	 */
 	public function execute($a, $b = null)
 	{
-		return $a % $b;
+		if (!$b) {
+			return NAN;
+		}
+
+		return $a / $b;
 	}
 
 	/**

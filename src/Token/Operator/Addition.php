@@ -1,6 +1,6 @@
 <?php
 /**
- * Plus.php
+ * Addition.php
  * ----------------------------------------------
  *
  *
@@ -19,10 +19,10 @@ use SK\Formuls\Token\OperatorInterface;
 
 
 /**
- * Class Plus
+ * Class Addition
  * @package SK\Formuls\Token\Operator
  */
-class Plus extends Token implements OperatorInterface
+class Addition extends Token implements OperatorInterface
 {
 	/**
 	 * @param mixed $a

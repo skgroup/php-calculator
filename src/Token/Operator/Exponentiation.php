@@ -1,6 +1,6 @@
 <?php
 /**
- * Plus.php
+ * Exponentiation.php
  * ----------------------------------------------
  *
  *
@@ -15,26 +15,23 @@ namespace SK\Formuls\Token\Operator;
 
 
 use SK\Formuls\Token;
-use SK\Formuls\Token\OperatorInterface;
+use SK\Formuls\Token\Operator;
+
 
 /**
- * Class Divide
+ * Class Exponentiation
  * @package SK\Formuls\Token\Operator
  */
-class Divide extends Token implements OperatorInterface
+class Exponentiation extends Token implements Token\OperatorInterface
 {
 	/**
 	 * @param mixed $a
 	 * @param mixed $b
-	 * @return mixed|void
+	 * @return mixed
 	 */
 	public function execute($a, $b = null)
 	{
-		if (!$b) {
-			return NAN;
-		}
-
-		return $a / $b;
+		return version_compare(PHP_VERSION, '5.6.0') >= 0 ? $a ** $b : pow($a, $b);
 	}
 
 	/**
@@ -50,7 +47,7 @@ class Divide extends Token implements OperatorInterface
 	 */
 	public function getPriority()
 	{
-		return 3;
+		return 4;
 	}
 
 	/**
@@ -58,6 +55,6 @@ class Divide extends Token implements OperatorInterface
 	 */
 	public function getAssociation()
 	{
-		return static::ASSOC_LEFT;
+		return static::ASSOC_RIGHT;
 	}
 }
