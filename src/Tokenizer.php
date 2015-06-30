@@ -190,8 +190,53 @@ class Tokenizer implements TokenizerInterface
 		}
 
 
+		if (!$this->checkSyntaxTokens($token)) {
+			throw new \LogicException('Syntax error: expression incorrect (offset "' . $this->cursor . '" characters)');
+		}
+
 		$this->tokenPrev = $token;
 		return $token;
+	}
+
+	/**
+	 * @param TokenInterface $token
+	 * @return bool
+	 */
+	protected function checkSyntaxTokens(TokenInterface $token)
+	{
+		// Current token
+		$isTokenLiteral 	= $token instanceof LiteralInterface;
+		$isTokenNumber	 	= $token instanceof Literal\Number || $token instanceof Literal\Variable;
+		$isTokenOperator 	= $token instanceof OperatorInterface;
+		$isTokenNegation 	= $token instanceof Operator\Negation;
+		$isTokenFunction 	= $token instanceof Operator\FunctionCall;
+
+		// Prev token
+		$isTokenPrevNull	 = !$this->tokenPrev;
+		$isTokenPrevOperator = $this->tokenPrev instanceof OperatorInterface;
+		$isTokenPrevLiteral	 = $this->tokenPrev instanceof LiteralInterface;
+		$isTokenPrevNumber	 		= $this->tokenPrev instanceof Literal\Number || $this->tokenPrev instanceof Literal\Variable;
+		$isTokenPrevParenthesisOpen = $this->tokenPrev instanceof Literal\ParenthesisOpen;
+		$isTokenPrevSeparate 		= $this->tokenPrev instanceof Literal\Separate;
+
+
+		if ($isTokenNumber) {
+			return $isTokenPrevNull || $isTokenPrevOperator || $isTokenPrevParenthesisOpen || $isTokenPrevSeparate;
+		}
+
+		if ($isTokenNegation) {
+			return ($isTokenPrevNull || $isTokenPrevOperator || $isTokenPrevLiteral) && !$isTokenPrevNumber;
+		}
+
+		if ($isTokenFunction) {
+			return $isTokenPrevNull || $isTokenPrevOperator;
+		}
+
+		if ($isTokenOperator) {
+			return $isTokenPrevLiteral;
+		}
+
+		return true;
 	}
 
 	/**
