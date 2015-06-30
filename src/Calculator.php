@@ -20,6 +20,7 @@ use SK\Formuls\Calculator\FunctionsAwareInterface;
 use SK\Formuls\Calculator\FunctionsAwareTrait;
 use SK\Formuls\Calculator\VariablesAwareInterface;
 use SK\Formuls\Calculator\VariablesAwareTrait;
+use SK\Formuls\Token\LiteralInterface;
 use SK\Formuls\Tokenizer\TokenizerAwareTrait;
 use SK\Formuls\Token\Literal;
 use SK\Formuls\Token\Operator;
@@ -107,18 +108,21 @@ class Calculator implements CalculatorInterface, FunctionsAwareInterface, Variab
 				$token->setCalculator($this);
 			}
 
-			if ($this->isNumber($token)) {
+			if ($token instanceof LiteralInterface) {
 				$stack[] = $token->getValue();
 				continue;
 			}
 
-			if ($token instanceof Operator\FunctionCall) {
-				$operandsNum = $token->getArgumentsNum();
-			} else {
-				$operandsNum = $token->getType() === OperatorInterface::TYPE_BINARY ? 2 : 1;
-			}
+			if ($token instanceof OperatorInterface) {
 
-			$stack[] = call_user_func_array([$token, 'execute'], array_splice($stack, -$operandsNum));
+				if ($token instanceof Operator\FunctionCall) {
+					$operandsNum = $token->getArgumentsNum();
+				} else {
+					$operandsNum = $token->getType() === OperatorInterface::TYPE_BINARY ? 2 : 1;
+				}
+
+				$stack[] = call_user_func_array([$token, 'execute'], array_splice($stack, -$operandsNum));
+			}
 		}
 
 		if (count($stack) > 1) {
@@ -225,6 +229,11 @@ class Calculator implements CalculatorInterface, FunctionsAwareInterface, Variab
 
 		// Выталкиваем все остальные элементы
 		while ($token = array_pop($operators)) {
+
+			if ($token instanceof Literal\ParenthesisOpen) {
+				throw new \RuntimeException('Error: Mismatched parentheses');
+			}
+
 			$results[] = $token;
 		}
 
